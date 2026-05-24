@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python311", "gcc"]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[phases.build]
+cmds = ["python -c \"from ml.train import train_model; train_model(); print('Model ready.')\""]
+
+[start]
+cmd = "uvicorn main:app --host 0.0.0.0 --port $PORT"
